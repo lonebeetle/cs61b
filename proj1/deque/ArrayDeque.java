@@ -173,20 +173,17 @@ public class ArrayDeque<T> implements Deque<T>,Iterable<T>{
         if(obj==null){
             return false;
         }
-        if(this.getClass()!=obj.getClass()){
+        if(!(obj instanceof ArrayDeque)){
             return false;
         }
         ArrayDeque<T> o=(ArrayDeque<T>) obj;
         if(o.size()!=this.size()){
             return false;
         }
-        for(int p=front,p1=o.front;p!=back;p=(p+1+space)%space,p1=(p1+1+o.space)%o.space){
-            if(Item[p]!=o.Item[p1]){
+        for(int i = 0;i < size;i++){
+            if(get(i)!= ((ArrayDeque<?>) obj).get(i)){
                 return false;
             }
-        }
-        if(Item[back]!=o.Item[o.back]){
-            return false;
         }
         return true;
     }
