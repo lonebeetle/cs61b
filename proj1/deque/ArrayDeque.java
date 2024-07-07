@@ -72,7 +72,7 @@ public class ArrayDeque<T> implements Deque<T>{
         Item[front] = null;
         front = (front + 1 + space) % space;
         size--;
-        if (size * 4 < space) {
+        if (size * 4 < space && space>=16) {
             resize();
         }
         return tmp;
@@ -92,7 +92,7 @@ public class ArrayDeque<T> implements Deque<T>{
         Item[back] = null;
         back = (back - 1 + space) % space;
         size--;
-        if (size * 4 < space&&space>=16) {
+        if (size * 4 < space && space>=16) {
             resize();
         }
         return tmp;
@@ -150,7 +150,7 @@ public class ArrayDeque<T> implements Deque<T>{
             int p = head;
             head = (head+1+space)%space;
             return (T) Item[p];
-            }
+        }
 
         @Override
         public boolean hasNext() {

@@ -1,6 +1,9 @@
 package deque;
 import java.util.Iterator;
-public abstract class LinkedListDeque<T> implements Deque<T>{
+
+import static org.junit.Assert.assertTrue;
+
+public class LinkedListDeque<T> implements Deque<T>{
     private Node head;
     private Node tail;
     private int size;
@@ -15,7 +18,7 @@ public abstract class LinkedListDeque<T> implements Deque<T>{
             this.next=next;
         }
     }
-    public abstract void resize();
+
     public void addFirst(T item){
         if(size==0){
             head=new Node(item,null,null);
@@ -23,6 +26,7 @@ public abstract class LinkedListDeque<T> implements Deque<T>{
         }
         else if(size==1){
             head=new Node(item,null,tail);
+            tail.prev = head;
         }
         else{
             head.prev=new Node(item,null,head);
@@ -37,6 +41,7 @@ public abstract class LinkedListDeque<T> implements Deque<T>{
         }
         else if(size==1){
             tail=new Node(item,head,null);
+            head.next = tail;
         }
         else{
             tail.next=new Node(item,tail,null);
@@ -57,13 +62,21 @@ public abstract class LinkedListDeque<T> implements Deque<T>{
         System.out.println();
     }
     public T removeFirst(){
-        T p=head.val;
-        head=head.next;
+        if(isEmpty()){
+            return null;
+        }
+        T p = head.val;
+        head = head.next;
+        size--;
         return p;
     }
     public T removeLast(){
+        if(isEmpty()){
+            return null;
+        }
         T p=tail.val;
-        tail=tail.next;
+        tail=tail.prev;
+        size--;
         return p;
     }
     public T get(int index){
