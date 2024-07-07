@@ -124,7 +124,10 @@ public class ArrayDeque<T> implements Deque<T>{
             for (int p = front, i = 0; p != back; p = (p + 1) % s, i++) {
                 NewItem[i] = Item[p];
             }
-            NewItem[s-1]=Item[back];
+
+            NewItem[size()-1]=Item[back];
+            front = 0;
+            back = size() - 1;
             Item = NewItem;
         }
 
@@ -136,7 +139,9 @@ public class ArrayDeque<T> implements Deque<T>{
         for (int p = front, i = 0; p != back; p = (p + 1) % s, i++) {
             newitem[i] = Item[p];
         }
-        newitem[s-1]=Item[back];
+        front = 0;
+        back = size() - 1;
+        newitem[size()-1]=Item[back];
         Item = newitem;
 
     }

@@ -86,6 +86,9 @@ public class LinkedListDeque<T> implements Deque<T>{
             i++;
             p=p.next;
         }
+        if(p==null){
+            return null;
+        }
         return p.val;
     }
     public T getRecursiveHelper(int index,Node p){
@@ -138,6 +141,8 @@ public class LinkedListDeque<T> implements Deque<T>{
             if(p.val!=p1.val){
                 return false;
             }
+            p = p.next;
+            p1 = p1.next;
         }
         return true;
     }
