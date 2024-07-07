@@ -39,6 +39,7 @@ public class TestGuitarString  {
 
     @Test
     public void testTic() {
+
         GuitarString s = new GuitarString(100);
         assertEquals(0.0, s.sample(), 0.0);
         assertEquals(0.0, s.sample(), 0.0);
@@ -46,7 +47,6 @@ public class TestGuitarString  {
         s.pluck();
         double sample1 = s.sample();
         assertNotEquals("After plucking, your samples should not be 0.", 0.0, sample1);
-
         s.tic();
         assertNotEquals("After tic(), your samples should not stay the same.", sample1, s.sample());
     }
