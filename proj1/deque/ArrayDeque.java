@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class ArrayDeque<T> implements Deque<T>{
+public class ArrayDeque<T> implements Deque<T>,Iterable<T>{
     protected T[] Item;
     protected int space;
     protected int size;
@@ -146,20 +146,22 @@ public class ArrayDeque<T> implements Deque<T>{
 
     }
     public Iterator<T> iterator(){
-        return new ArrayIterator<>();
+        return new ArrayIterator();
     }
-    public class ArrayIterator<T> implements Iterator<T>{
-        private int head=front;
+    public class ArrayIterator implements Iterator{
+        private int index;
+        ArrayIterator(){
+            index = 0;
+        }
+
         @Override
         public T next(){
-            int p = head;
-            head = (head+1+space)%space;
-            return (T) Item[p];
+            return get(index++);
         }
 
         @Override
         public boolean hasNext() {
-            return head!=back;
+            return index<size;
         }
     }
 

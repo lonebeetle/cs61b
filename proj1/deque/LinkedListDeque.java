@@ -3,7 +3,7 @@ import java.util.Iterator;
 
 import static org.junit.Assert.assertTrue;
 
-public class LinkedListDeque<T> implements Deque<T>{
+public class LinkedListDeque<T> implements Deque<T>,Iterable<T>{
     private Node head;
     private Node tail;
     private int size;
@@ -108,17 +108,15 @@ public class LinkedListDeque<T> implements Deque<T>{
         return  new LLDIteration();
     }
     private class LLDIteration implements Iterator{
-        private Node sentinal;
+        private int index;
         public LLDIteration(){
-            sentinal=head;
+            index = 0;
         }
         public T next(){
-            Node p=sentinal.next;
-            sentinal=sentinal.next;
-            return p.val;
+            return(get(index++));
         }
         public boolean hasNext(){
-            return sentinal.next==null;
+            return index<size;
         }
     }
     public boolean equals(Object o){
